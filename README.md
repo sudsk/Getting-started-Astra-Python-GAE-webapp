@@ -1,22 +1,32 @@
-# datastax-example-template
-A short few sentences describing what is the purpose of the example and what the user will learn
+# Getting started with Datastax Astra, Google App Engine, and Python drivers
 
-e.g.
-This application shows how to use configure your NodeJs application to connect to DDAC/Cassandra/DSE or an Apollo database at runtime.
+This project is designed to learn Datastax Astra in a fun way.
+In this project we build a web application called “Bookshelf” displaying books of different categories. The application allows CRUD operations on the books. 
+
+Public dataset used: [Kaggle Book Covers dataset](https://www.kaggle.com/lukaanicin/book-covers-dataset)
+
+Technologies used:
+Datastax Astra 
+Google Cloud Storage
+Google App Engine
+Python 3.7
 
 Contributors: A listing of contributors to this repository linked to their github profile
+[Suds Kumar](https://github.com/sudsk)
 
 ## Objectives
-A list of the top objectives that are being demonstrated by this sample
-
-e.g.
-* To demonstrate how to specify at runtime between a standard (DSE/DDAC/C*) client configuration and an Apollo configuration for the same application.
+To demonstrate how to integrate Google App Engine application with Datastax Astra using Python drivers
   
 ## Project Layout
-A list of key files within this repo and a short 1-2 sentence description of why they are important to the project
-
-e.g.
-* app.js - The main application file which contains all the logic to switch between the configurations
+* main.py - The main application file which contains all the logic for the web application
+* storage.py - Google cloud storage client application
+* astra.py - Datastax Astra client application
+* app.yaml - Google App Engine config
+* requirements.txt - Python libraries required
+* templates/form.html - Create a book form 
+* templates/view.html - View a book 
+* templates/list.html - Listing of books
+* templates/base.html - Base html file
 
 ## How this Works
 A description of how this sample works and how it demonstrates the objectives outlined above
@@ -24,22 +34,26 @@ A description of how this sample works and how it demonstrates the objectives ou
 ## Setup and Running
 
 ### Prerequisites
-The prerequisites required for this application to run
-
-e.g.
-* NodeJs version 8
-* A DSE 6.7 Cluster
-* Schema added to the cluster
+* Datastax Astra
+* Google Cloud Storage
+* Google App Engine
+* Python 3.7
+* Datastax bulk loader
 
 ### Running
-The steps and configuration needed to run and build this application
-
-e.g.
 To run this application use the following command:
 
-`node app.js`
+`python3 main.py`
 
 This will produce the following output:
 
-`Connected to cluster with 3 host(s) ["XX.XX.XX.136:9042","XX.XX.XX.137:9042","XX.XX.XX.138:9042"]`
+` * Serving Flask app "main" (lazy loading)`
+` * Environment: production`
+`   WARNING: This is a development server. Do not use it in a production deployment.`
+`   Use a production WSGI server instead.`
+` * Debug mode: on`
+`INFO:werkzeug: * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)`
+`INFO:werkzeug: * Restarting with stat`
+`WARNING:werkzeug: * Debugger is active!`
+`INFO:werkzeug: * Debugger PIN: 397-958-677`
 
