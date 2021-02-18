@@ -6,14 +6,8 @@ In this project we build a web application called “Bookshelf” displaying boo
 
 Public dataset used: [Kaggle Book Covers dataset](https://www.kaggle.com/lukaanicin/book-covers-dataset)
 
-Technologies used:
-Datastax Astra 
-Google Cloud Storage
-Google App Engine
-Python 3.7
-
-Contributors: A listing of contributors to this repository linked to their github profile
-[Suds Kumar](https://github.com/sudsk)
+Contributors: A listing of contributors to this repository linked to their github profile:
+* [Suds Kumar](https://github.com/sudsk)
 
 ## Objectives
 To demonstrate how to integrate Google App Engine application with Datastax Astra using Python drivers
@@ -48,13 +42,12 @@ To run this application use the following command:
 
 This will produce the following output:
 
-` * Serving Flask app "main" (lazy loading)`
-` * Environment: production`
-`   WARNING: This is a development server. Do not use it in a production deployment.`
-`   Use a production WSGI server instead.`
-` * Debug mode: on`
-`INFO:werkzeug: * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)`
-`INFO:werkzeug: * Restarting with stat`
-`WARNING:werkzeug: * Debugger is active!`
-`INFO:werkzeug: * Debugger PIN: 397-958-677`
+```
+* Serving Flask app "main" (lazy loading)
+* Environment: production
+  WARNING: This is a development server. Do not use it in a production deployment.
+  Use a production WSGI server instead.
+* Debug mode: on
+INFO:werkzeug: * Running on http://127.0.0.1:8080/ (Press CTRL+C to quit)
+```
 
