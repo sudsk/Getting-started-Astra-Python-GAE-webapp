@@ -39,6 +39,7 @@ A description of how this sample works and how it demonstrates the objectives ou
 ```
 # Bulk load to books_by_isbn table
 ~/dsbulk-1.7.0$ bin/dsbulk load -url books.csv -k killrvideo -t books_by_isbn -b "secure-connect-killrvideocluster.zip" -u <user> -p <password> -header true
+
 # Bulk load to books_by_category table
 ~/dsbulk-1.7.0$ bin/dsbulk load -url books.csv -k killrvideo -t books_by_category -b "secure-connect-killrvideocluster.zip" -u <user> -p <password> -header true
 ```
