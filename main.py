@@ -1,3 +1,4 @@
+
 import logging
 
 from flask import current_app, flash, Flask, Markup, redirect, render_template
@@ -98,7 +99,7 @@ def edit(id):
 
         return redirect(url_for('.view', id=id))
 
-    return render_template('form.html', action='Edit', book=book)
+    return render_template('edit.html', action='Edit', book=book)
 
 
 @app.route('/books/<id>/delete')

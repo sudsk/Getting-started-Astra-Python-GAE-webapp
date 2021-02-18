@@ -13,31 +13,29 @@ cloud_config= {
 auth_provider = PlainTextAuthProvider('KVUser', 'KVPassword1')
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
 session = cluster.connect("killrvideo")
+session.row_factory = dict_factory
 
 def read(id):
-    session.row_factory = dict_factory
-    results = session.execute("SELECT isbn as id, title, author, published_date, description, image_url FROM books_by_isbn WHERE isbn = %s",[id])
-    main_dict = results[0]
-    print(main_dict)
+    main_dict = session.execute("SELECT isbn as id, title, author, published_date, description, image_url FROM books_by_isbn WHERE isbn = %s",[id]).one()
     return main_dict
 
 def delete(id):
-    session.row_factory = dict_factory
     result = session.execute("SELECT published_date, category FROM books_by_isbn WHERE isbn = %s", [id]).one()
     session.execute("DELETE FROM books_by_isbn WHERE isbn = %s",[id])
     session.execute("DELETE FROM books_by_category WHERE category = %s AND published_date = %s AND isbn = %s",[result['category'], result['published_date'], id])
 
 def create(data):
-    session.execute('INSERT INTO books_by_isbn (isbn, title, author, category, published_date, description, image_url) VALUES (%s, %s, %s, %s, %s, %s, %s)', \
+    session.execute('INSERT INTO books_by_isbn (isbn, title, author, category, published_date,description, image_url) VALUES (%s, %s, %s, %s, %s, %s, %s)', \
                       [data['isbn'], data['title'], data['author'], data['category'], data['published_date'], data['description'], data['image_url']])
-    session.execute('INSERT INTO books_by_category (isbn, title, author, category, published_date, description, image_url) VALUES (%s, %s, %s, %s, %s, %s, %s)', \
+    session.execute('INSERT INTO books_by_category (isbn,title,author,category,published_date,description, image_url) VALUES (%s, %s, %s, %s, %s, %s, %s)', \
                       [data['isbn'], data['title'], data['author'], data['category'], data['published_date'], data['description'], data['image_url']])
     return data['isbn']
 
 def update(data, id):
+    result = session.execute("SELECT published_date, category FROM books_by_isbn WHERE isbn = %s", [id]).one()
     session.execute("UPDATE books_by_isbn SET title = %s, author = %s, description = %s WHERE isbn = %s",[data['title'],data['author'],data['description'],id])
-    #session.execute('UPDATE books_by_category SET title=%s,author=%s,description=%s WHERE category data['isbn'], data['title'], data['author'], data['category'], data['published_date'], data['description'], data['image_url']])
-    return data['isbn']
+    session.execute("UPDATE books_by_category SET title=%s,author=%s,description=%s WHERE category = %s AND published_date = %s AND isbn = %s", [data['title'], data['author'], data['description'], result['category'], result['published_date'], id])
+    return id
 
 def next_page(limit=20, ps=None):
     if ps is not None:
@@ -45,7 +43,6 @@ def next_page(limit=20, ps=None):
     else:
         paging_state = ps
     
-    session.row_factory = dict_factory   
     query = "SELECT isbn as id, title, author, published_date, description, image_url FROM books_by_category WHERE category = 'Food-Drink'"
     statement = SimpleStatement(query, fetch_size=limit)
     docs = session.execute(statement, paging_state=paging_state)
