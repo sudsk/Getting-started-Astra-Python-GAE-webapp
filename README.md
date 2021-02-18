@@ -37,15 +37,10 @@ A description of how this sample works and how it demonstrates the objectives ou
 
 ### Initial bulk load
 ```
-~/dsbulk-1.7.0$ bin/dsbulk load -url Art-Photography.csv -k killrvideo -t books_by_isbn -b "secure-connect-killrvideocluster.zip" -u <user> -p <password> -header true
-Username and password provided but auth provider not specified, inferring PlainTextAuthProvider
-A cloud secure connect bundle was provided: ignoring all explicit contact points.
-A cloud secure connect bundle was provided and selected operation performs writes: changing default consistency level to LOCAL_QUORUM.
-Operation directory: ~/dsbulk-1.7.0/logs/LOAD_20210217-105956-433941
-total | failed | rows/s | p50ms |  p99ms | p999ms | batches
-  982 |      0 |    418 | 61.23 | 130.02 | 152.04 |    2.12
-Operation LOAD_20210217-105956-433941 completed successfully in 1 second.
-Last processed positions can be found in positions.txt
+# Bulk load to books_by_isbn table
+~/dsbulk-1.7.0$ bin/dsbulk load -url books.csv -k killrvideo -t books_by_isbn -b "secure-connect-killrvideocluster.zip" -u <user> -p <password> -header true
+# Bulk load to books_by_category table
+~/dsbulk-1.7.0$ bin/dsbulk load -url books.csv -k killrvideo -t books_by_category -b "secure-connect-killrvideocluster.zip" -u <user> -p <password> -header true
 ```
 ### Running Webapp providing CRUD operations
 To run this application use the following command:
