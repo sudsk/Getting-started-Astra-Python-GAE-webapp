@@ -1,6 +1,7 @@
 # Getting started with Datastax Astra, Google App Engine, and Python drivers
 
 This project is designed to learn Datastax Astra in a fun way.
+
 In this project we build a web application called “Bookshelf” displaying books of different categories. The application allows CRUD operations on the books. 
 
 Public dataset used: [Kaggle Book Covers dataset](https://www.kaggle.com/lukaanicin/book-covers-dataset)
