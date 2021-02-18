@@ -3,14 +3,13 @@ from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import dict_factory
 from cassandra.query import named_tuple_factory
 from cassandra.query import SimpleStatement
-import uuid
-import binascii
+import uuid, binascii, os
 
 cloud_config= {
         'secure_connect_bundle': 'secure-connect-killrvideocluster.zip',
         'use_default_tempdir': True
 }
-auth_provider = PlainTextAuthProvider('KVUser', 'KVPassword1')
+auth_provider = PlainTextAuthProvider(os.environ.get('ASTRAUSER'), os.environ.get('ASTRAPASSWORD'))
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
 session = cluster.connect("killrvideo")
 session.row_factory = dict_factory
