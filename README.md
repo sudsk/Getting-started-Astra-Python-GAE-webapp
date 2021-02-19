@@ -1,4 +1,4 @@
-# Getting started with Datastax Astra, Google App Engine, and Python drivers
+# Getting started with building Web App with Datastax Astra and Python 
 
 This project is designed to learn Datastax Astra in a fun way.
 
